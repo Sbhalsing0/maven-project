@@ -5,6 +5,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                mvn clean package
+                docker build -t myapp .
+                d
             }
         }
         stage('Demo') {
