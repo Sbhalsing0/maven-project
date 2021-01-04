@@ -7,7 +7,6 @@ pipeline {
                 echo 'Building..'
                 mvn clean package
                 docker build -t myapp:$(env.BUILD_ID) .
-                d
             }
         }
         stage('Demo') {
