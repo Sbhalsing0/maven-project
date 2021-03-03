@@ -23,31 +23,3 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: DockerImage
-    displayName: Build and push Docker image
-    steps:
-    - task: Docker@1
-      displayName: 'Build the Docker image'
-      inputs:
-        containerregistrytype: 'Container Registry'
-        dockerRegistryEndpoint: 'Docker'
-        command: 'Build an image'
-        dockerFile: '**/Dockerfile'
-        imageName: '$(ImageName)'
-        includeLatestTag: true
-        useDefaultContext: false
-        buildContext: '.'
-        
-    - task: Docker@1
-      displayName: 'Push the Docker image to Dockerhub'
-      inputs:
-        containerregistrytype: 'Container Registry'
-        dockerRegistryEndpoint: 'Docker'
-        command: 'Push an image'
-        imageName: '$(ImageName)'
-        condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest')) 
