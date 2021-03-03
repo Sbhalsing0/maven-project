@@ -33,7 +33,7 @@ steps:
   - task: Docker@2
     displayName: Push Docker image
     inputs:
-      containerRegistry: 'timscontainerregistry'
-      repository: 'spring-boot-example'
-      command: 'push'
-      tags: 'latest'
+      containerRegistry: 'Docker'
+      repository: 'nodeapp'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
