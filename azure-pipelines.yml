@@ -33,6 +33,6 @@ steps:
     displayName: Push Docker image
     inputs:
       containerRegistry: 'Docker'
-      repository: 'nodeapp'
+      repository: 'sbhalsing0/nodeapp'
       command: 'buildAndPush'
       Dockerfile: '**/Dockerfile'
