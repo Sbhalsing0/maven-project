@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             agent { label 'docker_slave' }
             steps {
-                echo 'Building..'
+                sh 'mvn clean packages'
             }
         }
     }
