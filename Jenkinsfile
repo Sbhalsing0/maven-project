@@ -1,31 +1,30 @@
-#!groovy
-
 pipeline {
-  agent none
-  stages {
-    stage('Maven Install') {
-      agent {
-        docker {
-          image 'maven:3.5.0'
+    agent {
+       label "docker_slave_mvn"
+    }
+    stages {
+        stage("checkout code") {
+            steps {
+               echo "Running in docker"
+	           git branch: 'main',
+		           credentialsId: 'Github_Sanket',
+                   url: 'https://github.com/Sbhalsing0/jenkins-terraform.git'
+            }
         }
-      }
-      steps {
-        sh 'mvn clean install'
-      }
-    }
-    stage('Docker Build') {
-      agent any
-      steps {
-        sh 'docker build -t myapp:latest .'
-      }
-    }
-    stage('Docker Push') {
-      agent any
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'DockerhubPassword', usernameVariable: 'DockerhubUser')]) {
-          sh "docker login -u ${env.DockerhubUser} -p ${env.DockerhubPassword}"
+
+        stage("build and test the project") {
+            stages {
+               stage("build") {
+                   steps {
+                       sh "terraform -version"
+                   }
+               }
+               stage("test") {
+                   steps {
+                      withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'DockerhubPassword', usernameVariable: 'DockerhubUser')]) {
+                      sh "docker login -u ${env.DockerhubUser} -p ${env.DockerhubPassword}"
+               }
+            }
         }
-      }
     }
-  }
 }
