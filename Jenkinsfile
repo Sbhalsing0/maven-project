@@ -13,8 +13,8 @@ pipeline {
         }
 
         stage("build and test the project") {
-            stages {
-	      agent any
+	   agent any 
+	   stages {
                stage("build") {
                    steps {
                        sh "docker --version"
