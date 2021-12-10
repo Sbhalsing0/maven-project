@@ -22,17 +22,17 @@ steps:
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       goals: 'package'
 
-  - task: ContainerBuild@0
-    displayName: Build Docker image
-    inputs:
-      dockerRegistryServiceConnection: 'Docker'
-      repository: 'sbhalsing0/nodeapp'
-      Dockerfile: 'Dockerfile'
+  # - task: ContainerBuild@0
+  #   displayName: Build Docker image
+  #   inputs:
+  #     dockerRegistryServiceConnection: 'Docker'
+  #     repository: 'sbhalsing0/nodeapp'
+  #     Dockerfile: 'Dockerfile'
   
-  - task: Docker@2
-    displayName: Push Docker image
-    inputs:
-      containerRegistry: 'Docker'
-      repository: 'sbhalsing0/nodeapp'
-      command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
+  # - task: Docker@2
+  #   displayName: Push Docker image
+  #   inputs:
+  #     containerRegistry: 'Docker'
+  #     repository: 'sbhalsing0/nodeapp'
+  #     command: 'buildAndPush'
+  #     Dockerfile: '**/Dockerfile'
