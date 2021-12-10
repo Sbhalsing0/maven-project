@@ -36,3 +36,9 @@ steps:
   #     repository: 'sbhalsing0/nodeapp'
   #     command: 'buildAndPush'
   #     Dockerfile: '**/Dockerfile'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'java'
+    publishLocation: 'Container'
