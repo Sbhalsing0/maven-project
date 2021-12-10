@@ -37,8 +37,9 @@ steps:
   #     command: 'buildAndPush'
   #     Dockerfile: '**/Dockerfile'
 
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'java'
+    ArtifactName: '*'
     publishLocation: 'Container'
