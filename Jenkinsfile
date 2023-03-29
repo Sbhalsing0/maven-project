@@ -1,14 +1,14 @@
 pipeline {
     agent {
-       label "master"
+       label "docker_slave"
     }
     stages {
         stage("checkout code") {
             steps {
                echo "Running in docker"
 	           git branch: 'main',
-		           credentialsId: 'Github_Sanket',
-                   url: 'https://github.com/Sbhalsing0/jenkins-terraform.git'
+		           //credentialsId: 'Github_Sanket',
+                   url: 'https://github.com/Sbhalsing0/maven-project.git'
             }
         }
 
@@ -17,13 +17,15 @@ pipeline {
 	   stages {
                stage("build") {
                    steps {
-                       sh "docker --version"
+                       sh "apk update"
+		       sh "apk add maven"
                    }
                }
                stage("test") {
                    steps {
-                     withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'DockerhubPassword', usernameVariable: 'DockerhubUser')]) {
-                       sh "docker login -u ${env.DockerhubUser} -p ${env.DockerhubPassword}"
+                     //withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'DockerhubPassword', usernameVariable: 'DockerhubUser')]) {
+                     //sh "docker login -u ${env.DockerhubUser} -p ${env.DockerhubPassword}"
+		       sh "mvn clean install"
                        }
                     }
                }
