@@ -1,19 +1,19 @@
 pipeline {
-    agent {
-       label "docker_slave"
-    }
+    agent any
     stages {
         stage("checkout code") {
             steps {
                echo "Running in docker"
-	           git branch: 'main',
+	           git branch: 'master',
 		           //credentialsId: 'Github_Sanket',
                    url: 'https://github.com/Sbhalsing0/maven-project.git'
             }
         }
 
         stage("build and test the project") {
-	   agent any 
+     agent {
+       label "docker_slave"
+    }
 	   stages {
                stage("build") {
                    steps {
