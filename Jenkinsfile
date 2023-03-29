@@ -18,17 +18,16 @@ pipeline {
                stage("build") {
                    steps {
                        sh "apk update"
-		       sh "apk add maven"
+		               sh "apk add maven"
                    }
                }
                stage("test") {
                    steps {
                      //withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'DockerhubPassword', usernameVariable: 'DockerhubUser')]) {
                      //sh "docker login -u ${env.DockerhubUser} -p ${env.DockerhubPassword}"
-		       sh "mvn clean install"
-                       }
+		              sh "mvn clean install"
                     }
-               }
+                }
             }
         }
     }
