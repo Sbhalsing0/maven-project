@@ -26,6 +26,8 @@ pipeline {
                      //withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'DockerhubPassword', usernameVariable: 'DockerhubUser')]) {
                      //sh "docker login -u ${env.DockerhubUser} -p ${env.DockerhubPassword}"
 		              sh "mvn clean install"
+			      sh "apk add docker"
+			      sh "docker build -t webapp ."
                     }
                 }
             }
