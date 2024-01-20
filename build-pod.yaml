@@ -8,8 +8,8 @@ spec:
       imagePullPolicy: Always # use cache or pull image for agent
       resources:  # limits the resources your build contaienr
         requests:
-          memory: "8Gi"
-          cpu: "500m"
+          memory: "0"
+          cpu: "0"
         limits:
           memory: "8Gi"
     - name: docker
