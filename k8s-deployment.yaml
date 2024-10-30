@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: maven
-        image: maven:tag
+        image: sbhalsing0/maven:tag
         ports:
         - containerPort: 8080
 ---
