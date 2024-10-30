@@ -11,7 +11,6 @@ pipeline {
             image: sbhalsing0/jenkins-docker-desktop:v1.2
             command:
             - cat
-            
             securityContext: 
               privileged: true     
             tty: true
@@ -36,8 +35,9 @@ pipeline {
         }
         stage('Release') {
             steps {
-                sh 'export DOCKER_HOST=tcp://44.197.215.6:2375'
-                sh 'docker -H tcp://44.197.215.6:2375 ps'
+                sh 'export DOCKER_HOST=tcp://3.234.205.203:2375'
+                sh 'docker -H tcp://3.234.205.203:2375 ps'
+                sh 'docker build -t maven:$BUILD_ID'
             }
         }
     }
