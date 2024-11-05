@@ -19,6 +19,7 @@ spec:
         image: sbhalsing0/maven:tag
         ports:
         - containerPort: 8080
+      serviceAccountName: jenkins
 ---
 apiVersion: v1
 kind: Service
