@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: maven-deployment
   labels:
-    app: maven
+    app: my-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: maven
+      app: my-app
   template:
     metadata:
       labels:
-        app: maven
+        app: my-app
     spec:
       containers:
       - name: maven
@@ -24,13 +24,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-maven
+  name: my-maven-svc
   labels:
-    app: maven
+    app: my-app
 spec:
   type: NodePort
   ports:
   - port: 8080
     targetPort: 8080
+    nodePort: 30007
     protocol: TCP
     name: http
